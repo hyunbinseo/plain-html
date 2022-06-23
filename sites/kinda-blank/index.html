@@ -11,15 +11,34 @@
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📄</text></svg>" />
   <meta property="og:title" content="Kinda Blank">
   <meta name="description"
-    content="Alternative to an about:blank page. Static HTML file with an almost empty body element and no JavaScript what-so-ever.">
+    content="A minimal website with two lines of text and a button. The page probably does not overflow, but it can scroll with a press of a button.">
   <meta property="og:description"
-    content="Alternative to an about:blank page. Static HTML file with an almost empty body element and no JavaScript what-so-ever.">
+    content="A minimal website with two lines of text and a button. The page probably does not overflow, but it can scroll with a press of a button.">
   <meta property="og:image" content="https://og-image.vercel.app/kinda%3A**blank**.png?theme=light&md=1">
+  <script>
+    const toggleLongBody = () => {
+      document.body.classList.toggle('long');
+      const isLong = document.body.classList.contains('long');
+      const toggle = document.querySelector('#toggle');
+      toggle.textContent = isLong ? 'DEFAULT BODY' : 'LONGER BODY';
+    }
+  </script>
 </head>
 
 <body>
-  <h1>Kinda Blank Page</h1>
-  <a href="/long">Long Page With Scroll</a>
+  <h1>Kinda Blank</h1>
+  <p>A border is set around the <code>&lt;body&gt;</code> element.</p>
+  <button type="button" id="toggle" onclick="toggleLongBody()">LONGER BODY</button>
+  <style>
+    body {
+      border: solid;
+      padding: 8px;
+    }
+
+    .long {
+      height: 200vh;
+    }
+  </style>
 </body>
 
 </html>
