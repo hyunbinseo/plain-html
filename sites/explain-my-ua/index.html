@@ -26,7 +26,8 @@
     }
 
     code,
-    pre {
+    pre,
+    fieldset {
       background: #f2f1f1;
     }
 
@@ -42,6 +43,10 @@
 
     pre {
       overflow-x: auto;
+    }
+
+    fieldset {
+      border: none;
     }
 
     .error {
@@ -68,7 +73,8 @@
       }
 
       code,
-      pre {
+      pre,
+      fieldset {
         background: #343434;
       }
 
@@ -101,6 +107,7 @@
       <code>undefined</code> is converted into <code>null</code>
     </li>
   </ul>
+  <pre id="ua"></pre>
   <script>
     const loadingTimeoutId = setTimeout(() => {
       document.getElementById('loading').style.display = 'block';
@@ -116,10 +123,7 @@
     clearTimeout(loadingTimeoutId);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('library').style.display = 'block';
-
-    const result = document.createElement('pre');
-    result.textContent = JSON.stringify(parsed, (k, v) => v === undefined ? null : v, 2);
-    document.body.appendChild(result);
+    document.getElementById('ua').textContent = JSON.stringify(parsed, (k, v) => v === undefined ? null : v, 2);
   </script>
   <h2>Features</h2>
   <fieldset id="features"></fieldset>
