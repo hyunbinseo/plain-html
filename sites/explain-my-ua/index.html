@@ -35,9 +35,21 @@
       width: fit-content;
     }
 
-    pre {
+    pre,
+    fieldset {
       padding: 1rem;
+    }
+
+    pre {
       overflow-x: auto;
+    }
+
+    #features>label {
+      display: block;
+    }
+
+    #features>label>input[type='checkbox'] {
+      margin-right: 0.5rem;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -62,6 +74,7 @@
 <body>
   <h1>Explain My User-Agent</h1>
   <noscript>Error: JavaScript is not available.</noscript>
+  <h2>User-Agent</h2>
   <p id="loading" style="display: none;">Waiting for the UA to be parsed.</p>
   <ul id="library" style="display: none;">
     <li>
@@ -91,6 +104,46 @@
     const result = document.createElement('pre');
     result.textContent = JSON.stringify(parsed, (k, v) => v === undefined ? null : v, 2);
     document.body.appendChild(result);
+  </script>
+  <h2>Features</h2>
+  <fieldset id="features"></fieldset>
+  <script>
+    const createCheckBox = (label, checked = false, disabled = false, href = '') => {
+      const labelEl = document.createElement('label');
+
+      const inputEl = document.createElement('input');
+      inputEl.setAttribute('type', 'checkbox');
+      inputEl.checked = checked;
+      inputEl.disabled = disabled;
+
+      labelEl.appendChild(inputEl);
+
+      if (!href) {
+        const textNode = document.createTextNode(label);
+        labelEl.appendChild(textNode);
+      } else {
+        const anchorEl = document.createElement('a');
+        anchorEl.href = href;
+        anchorEl.textContent = label;
+        labelEl.appendChild(anchorEl);
+      }
+
+      return labelEl;
+    }
+
+    const features = document.getElementById('features');
+
+    const featScriptModule = (isSupported) => {
+      features.appendChild(
+        createCheckBox('JavaScript modules via script tag', isSupported, true, 'https://caniuse.com/es6-module')
+      );
+    };
+  </script>
+  <script type="module">
+    featScriptModule(true);
+  </script>
+  <script nomodule>
+    featScriptModule(false);
   </script>
 </body>
 
