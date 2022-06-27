@@ -58,11 +58,36 @@
 <body>
   <h1>Explain My User-Agent</h1>
   <noscript>Error: JavaScript is not available.</noscript>
-  <p>The UA is parsed with <a href="https://github.com/faisalman/ua-parser-js"><code>ua-parser-js</code></a> <a
-      href="https://cdnjs.com/libraries/UAParser.js/1.0.2"><code>1.0.2</code></a></p>
+  <p id="loading" style="display: none;">Waiting for the UA to be parsed.</p>
+  <ul id="library" style="display: none;">
+    <li>
+      Parsed with <a href="https://github.com/faisalman/ua-parser-js"><code>ua-parser-js</code></a> <a
+        href="https://cdnjs.com/libraries/UAParser.js/1.0.2"><code>1.0.2</code></a>
+    </li>
+    <li>
+      <code>undefined</code> is converted into <code>null</code>
+    </li>
+  </ul>
+  <script>
+    const loadingTimeoutId = setTimeout(() => {
+      document.getElementById('loading').style.display = 'block';
+    }, 200);
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"
     integrity="sha512-M/6+/Ib+r5t/hijvSPLPO76abBzT8vlMVRSJ16JDA+NV9CGCkAjq8UD4kHN6KpHncDTRRIb0oUU01yhW+yfqng=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const parser = new UAParser();
+    const parsed = parser.getResult();
+
+    clearTimeout(loadingTimeoutId);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('library').style.display = 'block';
+
+    const result = document.createElement('pre');
+    result.textContent = JSON.stringify(parsed, (k, v) => v === undefined ? null : v, 2);
+    document.body.appendChild(result);
+  </script>
 </body>
 
 </html>
