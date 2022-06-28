@@ -86,16 +86,16 @@
 </head>
 
 <body>
+  <script>
+    if (/MSIE|Trident/.test(window.navigator.userAgent)) {
+      document.documentElement.innerHTML = '';
+      document.body.textContent = 'Error: Internet Explorer is not supported.';
+    }
+  </script>
   <h1>Explain My User-Agent</h1>
   <noscript>
     <p class="error">Error: JavaScript is not available.</p>
   </noscript>
-  <p id="ie" class="error" style="display: none;">Error: Internet Explorer is not supported.</p>
-  <script>
-    if (/MSIE|Trident/.test(window.navigator.userAgent)) {
-      document.getElementById('ie').style.display = 'block';
-    }
-  </script>
   <h2>User-Agent</h2>
   <ul id="library" style="display: none;">
     <li>
