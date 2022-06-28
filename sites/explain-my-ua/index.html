@@ -97,7 +97,6 @@
     }
   </script>
   <h2>User-Agent</h2>
-  <p id="loading" style="display: none;">Waiting for the UA to be parsed.</p>
   <ul id="library" style="display: none;">
     <li>
       Parsed with <a href="https://github.com/faisalman/ua-parser-js"><code>ua-parser-js</code></a> <a
@@ -107,12 +106,7 @@
       <code>undefined</code> is converted into <code>null</code>
     </li>
   </ul>
-  <pre id="ua"></pre>
-  <script>
-    const loadingTimeoutId = setTimeout(() => {
-      document.getElementById('loading').style.display = 'block';
-    }, 200);
-  </script>
+  <pre id="ua">Loading...</pre>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"
     integrity="sha512-M/6+/Ib+r5t/hijvSPLPO76abBzT8vlMVRSJ16JDA+NV9CGCkAjq8UD4kHN6KpHncDTRRIb0oUU01yhW+yfqng=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -120,13 +114,11 @@
     const parser = new UAParser();
     const parsed = parser.getResult();
 
-    clearTimeout(loadingTimeoutId);
-    document.getElementById('loading').style.display = 'none';
     document.getElementById('library').style.display = 'block';
     document.getElementById('ua').textContent = JSON.stringify(parsed, (k, v) => v === undefined ? null : v, 2);
   </script>
   <h2>Features</h2>
-  <fieldset id="features"></fieldset>
+  <fieldset id="features">Loading...</fieldset>
   <script>
     const createCheckBox = (label, checked = false, disabled = false, href = '') => {
       const labelEl = document.createElement('label');
@@ -152,6 +144,7 @@
     }
 
     const features = document.getElementById('features');
+    features.innerHTML = '';
 
     const featScriptModule = (isSupported) => {
       features.appendChild(
