@@ -17,28 +17,40 @@
   <meta property="og:image" content="https://og-image.vercel.app/kinda%3A**blank**.png?theme=light&md=1">
   <script>
     const toggleLongBody = () => {
-      document.body.classList.toggle('long');
-      const isLong = document.body.classList.contains('long');
+      document.body.classList.toggle('h-long');
+      const isLong = document.body.classList.contains('h-long');
       const toggle = document.querySelector('#toggle');
       toggle.textContent = isLong ? 'DEFAULT BODY' : 'LONGER BODY';
+      const listItem = document.querySelector('#item');
+      listItem.style.display = isLong ? 'list-item' : 'none';
     }
   </script>
   <style>
-    html {
-      border: solid;
+    html,
+    body {
+      margin: 0;
+      height: 100%;
     }
 
     body {
-      border: solid;
-      padding: 8px;
+      box-sizing: border-box;
+      border-style: solid;
+      border-color: green;
+      border-width: 8px;
+      padding: 16px;
     }
 
     body>* {
       margin-top: 0;
     }
 
-    .long {
-      height: 200vh;
+    ul {
+      list-style-position: inside;
+      padding-left: 4px;
+    }
+
+    .h-long {
+      height: 200%;
     }
 
   </style>
@@ -46,7 +58,11 @@
 
 <body>
   <h1>Kinda Blank</h1>
-  <p>A border is set around the <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code> element.</p>
+  <ul>
+    <li><code>html, body { margin: 0; height: 100%; }</code></li>
+    <li><code>body { box-sizing: border-box; border: solid; }</code></li>
+    <li id="item" style="display: none;"><code>body { height: 200%; }</code></li>
+  </ul>
   <button type="button" id="toggle" onclick="toggleLongBody()">LONGER BODY</button>
 </body>
 
