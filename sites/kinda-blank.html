@@ -1,69 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta property="og:type" content="website" />
+		<title>Kinda Blank</title>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📄</text></svg>"
+		/>
+		<meta property="og:title" content="Kinda Blank" />
+		<meta
+			name="description"
+			content="A minimal website with two lines of text and a button. The page probably does not overflow, but it can scroll with a press of a button."
+		/>
+		<meta
+			property="og:description"
+			content="A minimal website with two lines of text and a button. The page probably does not overflow, but it can scroll with a press of a button."
+		/>
+		<meta
+			property="og:image"
+			content="https://og-image.vercel.app/kinda%3A**blank**.png?theme=light&md=1"
+		/>
+		<script>
+			const toggleLongBody = () => {
+				document.body.classList.toggle('h-long');
+				const isLong = document.body.classList.contains('h-long');
+				const toggle = document.querySelector('#toggle');
+				toggle.textContent = isLong ? 'DEFAULT BODY' : 'LONGER BODY';
+				const listItem = document.querySelector('#item');
+				listItem.style.display = isLong ? 'list-item' : 'none';
+			};
+		</script>
+		<style>
+			html,
+			body {
+				margin: 0;
+				height: 100%;
+			}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-  <title>Kinda Blank</title>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📄</text></svg>" />
-  <meta property="og:title" content="Kinda Blank">
-  <meta name="description"
-    content="A minimal website with two lines of text and a button. The page probably does not overflow, but it can scroll with a press of a button.">
-  <meta property="og:description"
-    content="A minimal website with two lines of text and a button. The page probably does not overflow, but it can scroll with a press of a button.">
-  <meta property="og:image" content="https://og-image.vercel.app/kinda%3A**blank**.png?theme=light&md=1">
-  <script>
-    const toggleLongBody = () => {
-      document.body.classList.toggle('h-long');
-      const isLong = document.body.classList.contains('h-long');
-      const toggle = document.querySelector('#toggle');
-      toggle.textContent = isLong ? 'DEFAULT BODY' : 'LONGER BODY';
-      const listItem = document.querySelector('#item');
-      listItem.style.display = isLong ? 'list-item' : 'none';
-    }
-  </script>
-  <style>
-    html,
-    body {
-      margin: 0;
-      height: 100%;
-    }
+			body {
+				box-sizing: border-box;
+				border-style: solid;
+				border-color: green;
+				border-width: 8px;
+				padding: 16px;
+			}
 
-    body {
-      box-sizing: border-box;
-      border-style: solid;
-      border-color: green;
-      border-width: 8px;
-      padding: 16px;
-    }
+			body > * {
+				margin-top: 0;
+			}
 
-    body>* {
-      margin-top: 0;
-    }
+			ul {
+				list-style-position: inside;
+				padding-left: 4px;
+			}
 
-    ul {
-      list-style-position: inside;
-      padding-left: 4px;
-    }
+			.h-long {
+				height: 200%;
+			}
+		</style>
+	</head>
 
-    .h-long {
-      height: 200%;
-    }
-
-  </style>
-</head>
-
-<body>
-  <h1>Kinda Blank</h1>
-  <ul>
-    <li><code>html, body { margin: 0; height: 100%; }</code></li>
-    <li><code>body { box-sizing: border-box; border: solid; }</code></li>
-    <li id="item" style="display: none;"><code>body { height: 200%; }</code></li>
-  </ul>
-  <button type="button" id="toggle" onclick="toggleLongBody()">LONGER BODY</button>
-</body>
-
+	<body>
+		<h1>Kinda Blank</h1>
+		<ul>
+			<li><code>html, body { margin: 0; height: 100%; }</code></li>
+			<li><code>body { box-sizing: border-box; border: solid; }</code></li>
+			<li id="item" style="display: none">
+				<code>body { height: 200%; }</code>
+			</li>
+		</ul>
+		<button type="button" id="toggle" onclick="toggleLongBody()">
+			LONGER BODY
+		</button>
+	</body>
 </html>

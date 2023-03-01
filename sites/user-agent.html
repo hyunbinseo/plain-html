@@ -1,164 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta property="og:type" content="website" />
+		<title>Explain My User-Agent</title>
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📱</text></svg>"
+		/>
+		<meta property="og:title" content="Explain My User-Agent" />
+		<meta
+			name="description"
+			content="Check the web browser's User-Agent(UA) as a raw string and in a parsed form. Uses the window.navigator.userAgent value and the ua-parser-js library."
+		/>
+		<meta
+			property="og:description"
+			content="Check the web browser's User-Agent(UA) as a raw string and in a parsed form. Uses the window.navigator.userAgent value and the ua-parser-js library."
+		/>
+		<meta
+			property="og:image"
+			content="https://og-image.vercel.app/Explain%20**User-Agent**.png?theme=light&md=1&fontSize=75px"
+		/>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-  <title>Explain My User-Agent</title>
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📱</text></svg>" />
-  <meta property="og:title" content="Explain My User-Agent">
-  <meta name="description"
-    content="Check the web browser's User-Agent(UA) as a raw string and in a parsed form. Uses the window.navigator.userAgent value and the ua-parser-js library.">
-  <meta property="og:description"
-    content="Check the web browser's User-Agent(UA) as a raw string and in a parsed form. Uses the window.navigator.userAgent value and the ua-parser-js library.">
-  <meta property="og:image"
-    content="https://og-image.vercel.app/Explain%20**User-Agent**.png?theme=light&md=1&fontSize=75px">
-  <style>
-    body {
-      font-family: sans-serif;
-    }
+			a,
+			a:visited {
+				color: #0069c2;
+			}
 
-    a,
-    a:visited {
-      color: #0069c2;
-    }
+			code,
+			pre,
+			fieldset {
+				background: #f2f1f1;
+			}
 
-    code,
-    pre,
-    fieldset {
-      background: #f2f1f1;
-    }
+			code {
+				padding: 0.125rem 0.25rem;
+				width: fit-content;
+			}
 
-    code {
-      padding: 0.125rem 0.25rem;
-      width: fit-content;
-    }
+			pre,
+			fieldset {
+				padding: 1rem;
+			}
 
-    pre,
-    fieldset {
-      padding: 1rem;
-    }
+			pre {
+				overflow-x: auto;
+			}
 
-    pre {
-      overflow-x: auto;
-    }
+			fieldset {
+				border: none;
+			}
 
-    fieldset {
-      border: none;
-    }
+			.error {
+				color: #d30038;
+			}
 
-    .error {
-      color: #d30038;
-    }
+			#features > label {
+				display: block;
+			}
 
-    #features>label {
-      display: block;
-    }
+			#features > label > input[type='checkbox'] {
+				margin-right: 0.5rem;
+			}
 
-    #features>label>input[type='checkbox'] {
-      margin-right: 0.5rem;
-    }
+			@media (prefers-color-scheme: dark) {
+				html {
+					background: #1b1b1b;
+					color: #fff;
+				}
 
-    @media (prefers-color-scheme: dark) {
-      html {
-        background: #1b1b1b;
-        color: #fff;
-      }
+				a,
+				a:visited {
+					color: #8cb4ff;
+				}
 
-      a,
-      a:visited {
-        color: #8cb4ff;
-      }
+				code,
+				pre,
+				fieldset {
+					background: #343434;
+				}
 
-      code,
-      pre,
-      fieldset {
-        background: #343434;
-      }
+				.error {
+					color: #ff707f;
+				}
+			}
+		</style>
+	</head>
 
-      .error {
-        color: #ff707f;
-      }
-    }
-  </style>
-</head>
+	<body>
+		<script>
+			if (/MSIE|Trident/.test(window.navigator.userAgent)) {
+				document.documentElement.innerHTML = '';
+				document.body.textContent =
+					'Error: Internet Explorer is not supported.';
+			}
+		</script>
+		<h1>Explain My Browser</h1>
+		<noscript>
+			<p class="error">Error: JavaScript is not available.</p>
+		</noscript>
+		<h2>User-Agent</h2>
+		<ul id="library" style="display: none">
+			<li>
+				Parsed with
+				<a href="https://github.com/faisalman/ua-parser-js">
+					<code>ua-parser-js</code>
+				</a>
+				<a href="https://cdnjs.com/libraries/UAParser.js/1.0.2">
+					<code>1.0.2</code>
+				</a>
+			</li>
+			<li>
+				<code>undefined</code>
+				is converted into
+				<code>null</code>
+			</li>
+		</ul>
+		<pre id="ua">Loading...</pre>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"
+			integrity="sha512-M/6+/Ib+r5t/hijvSPLPO76abBzT8vlMVRSJ16JDA+NV9CGCkAjq8UD4kHN6KpHncDTRRIb0oUU01yhW+yfqng=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script>
+			const parser = new UAParser();
+			const parsed = parser.getResult();
 
-<body>
-  <script>
-    if (/MSIE|Trident/.test(window.navigator.userAgent)) {
-      document.documentElement.innerHTML = '';
-      document.body.textContent = 'Error: Internet Explorer is not supported.';
-    }
-  </script>
-  <h1>Explain My Browser</h1>
-  <noscript>
-    <p class="error">Error: JavaScript is not available.</p>
-  </noscript>
-  <h2>User-Agent</h2>
-  <ul id="library" style="display: none;">
-    <li>
-      Parsed with <a href="https://github.com/faisalman/ua-parser-js"><code>ua-parser-js</code></a> <a
-        href="https://cdnjs.com/libraries/UAParser.js/1.0.2"><code>1.0.2</code></a>
-    </li>
-    <li>
-      <code>undefined</code> is converted into <code>null</code>
-    </li>
-  </ul>
-  <pre id="ua">Loading...</pre>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"
-    integrity="sha512-M/6+/Ib+r5t/hijvSPLPO76abBzT8vlMVRSJ16JDA+NV9CGCkAjq8UD4kHN6KpHncDTRRIb0oUU01yhW+yfqng=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    const parser = new UAParser();
-    const parsed = parser.getResult();
+			document.getElementById('library').style.display = 'block';
+			document.getElementById('ua').textContent = JSON.stringify(
+				parsed,
+				(k, v) => (v === undefined ? null : v),
+				2
+			);
+		</script>
+		<h2>Features</h2>
+		<fieldset id="features">Loading...</fieldset>
+		<script>
+			const createCheckBox = (
+				label,
+				checked = false,
+				disabled = false,
+				href = ''
+			) => {
+				const labelEl = document.createElement('label');
 
-    document.getElementById('library').style.display = 'block';
-    document.getElementById('ua').textContent = JSON.stringify(parsed, (k, v) => v === undefined ? null : v, 2);
-  </script>
-  <h2>Features</h2>
-  <fieldset id="features">Loading...</fieldset>
-  <script>
-    const createCheckBox = (label, checked = false, disabled = false, href = '') => {
-      const labelEl = document.createElement('label');
+				const inputEl = document.createElement('input');
+				inputEl.setAttribute('type', 'checkbox');
+				inputEl.checked = checked;
+				inputEl.disabled = disabled;
 
-      const inputEl = document.createElement('input');
-      inputEl.setAttribute('type', 'checkbox');
-      inputEl.checked = checked;
-      inputEl.disabled = disabled;
+				labelEl.appendChild(inputEl);
 
-      labelEl.appendChild(inputEl);
+				if (!href) {
+					const textNode = document.createTextNode(label);
+					labelEl.appendChild(textNode);
+				} else {
+					const anchorEl = document.createElement('a');
+					anchorEl.href = href;
+					anchorEl.textContent = label;
+					labelEl.appendChild(anchorEl);
+				}
 
-      if (!href) {
-        const textNode = document.createTextNode(label);
-        labelEl.appendChild(textNode);
-      } else {
-        const anchorEl = document.createElement('a');
-        anchorEl.href = href;
-        anchorEl.textContent = label;
-        labelEl.appendChild(anchorEl);
-      }
+				return labelEl;
+			};
 
-      return labelEl;
-    }
+			const features = document.getElementById('features');
+			features.innerHTML = '';
 
-    const features = document.getElementById('features');
-    features.innerHTML = '';
-
-    const featScriptModule = (isSupported) => {
-      features.appendChild(
-        createCheckBox('JavaScript modules via script tag', isSupported, true, 'https://caniuse.com/es6-module')
-      );
-    };
-  </script>
-  <script type="module">
-    featScriptModule(true);
-  </script>
-  <script nomodule>
-    featScriptModule(false);
-  </script>
-</body>
-
+			const featScriptModule = (isSupported) => {
+				features.appendChild(
+					createCheckBox(
+						'JavaScript modules via script tag',
+						isSupported,
+						true,
+						'https://caniuse.com/es6-module'
+					)
+				);
+			};
+		</script>
+		<script type="module">
+			featScriptModule(true);
+		</script>
+		<script nomodule>
+			featScriptModule(false);
+		</script>
+	</body>
 </html>
