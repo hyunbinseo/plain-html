@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>hash-dialog-modal</title>
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			body {
+				font-family: sans-serif;
+				display: flex;
+				margin: 0;
+			}
+			body > main {
+				margin: auto;
+			}
+			main > div {
+				display: flex;
+				justify-content: space-between;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>hash-dialog-modal</h1>
+			<div>
+				<a href="https://github.com/hyunbinseo/hash-dialog-modal#readme">
+					GitHub
+				</a>
+				<div>
+					<a href="#1">#1</a>
+					|
+					<a href="#2">#2</a>
+				</div>
+			</div>
+		</main>
+
+		<dialog>
+			<h1>This is a modal</h1>
+			<p id="dialog-body"></p>
+			<button type="button" id="dialog-close-button">Close Modal</button>
+		</dialog>
+
+		<script type="module">
+			// Specify the version number in production environments.
+			// Reference https://www.jsdelivr.com/package/npm/hash-dialog-modal
+			import { controlDialogWithUrlHash } from 'https://cdn.jsdelivr.net/npm/hash-dialog-modal/+esm';
+
+			const dialog = document.querySelector('dialog');
+
+			// Dynamically update the dialog content.
+
+			const updateDialogContent = () =>
+				(document.querySelector(
+					'#dialog-body'
+				).textContent = `Current hash is '${window.location.hash}'`);
+
+			updateDialogContent();
+
+			window.addEventListener('hashchange', updateDialogContent);
+
+			// Control the dialog based on the URL hash.
+
+			const { removeEventListeners } = controlDialogWithUrlHash(dialog, 'auto');
+
+			// Enable the dialog close button inside the modal.
+
+			document
+				.querySelector('#dialog-close-button')
+				.addEventListener('click', () => {
+					dialog.close();
+				});
+		</script>
+	</body>
+</html>
