@@ -128,6 +128,20 @@
 		</script>
 		<h2>Features</h2>
 		<fieldset id="features">Loading...</fieldset>
+		<h2>Actions</h2>
+		<fieldset>
+			<button type="button" onclick="copy()">Copy</button>
+			<button type="button" onclick="share()">Share</button>
+		</fieldset>
+		<script>
+			const copy = () =>
+				window.navigator.clipboard.writeText(navigator.userAgent);
+			const share = () =>
+				window.navigator.share({
+					title: 'User-Agent',
+					text: navigator.userAgent,
+				});
+		</script>
 		<script>
 			const createCheckBox = (
 				label,
@@ -171,11 +185,11 @@
 				);
 			};
 		</script>
-		<script type="module">
-			featScriptModule(true);
-		</script>
 		<script nomodule>
 			featScriptModule(false);
+		</script>
+		<script type="module">
+			featScriptModule(true);
 		</script>
 	</body>
 </html>
